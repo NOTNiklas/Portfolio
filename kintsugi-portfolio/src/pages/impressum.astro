@@ -1,0 +1,42 @@
+---
+import { getEntry, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { legal } from '../lib/data';
+
+const entry = await getEntry('legal', 'impressum');
+const { Content } = await render(entry!);
+---
+
+<Layout lang="de" title="Impressum" alternate="/impressum/">
+  <section class="section section--parchment" style="padding-block: 64px 48px">
+    <div class="container stack" style="--gap: 12px">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="h1">Impressum</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container--narrow prose legal">
+      <p class="small muted">Angaben gemäß § 5 DDG</p>
+      <p>
+        {legal.name}<br />
+        {legal.street}<br />
+        {legal.zip} {legal.city}<br />
+        {legal.country}
+      </p>
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a>
+        {legal.phone && <><br />Telefon: {legal.phone}</>}
+      </p>
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p>{legal.name}, Anschrift wie oben</p>
+      <Content />
+      <p class="small muted">Stand: {legal.updated}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal :global(p) { color: var(--ink); }
+  .legal :global(h2) { font-size: 21px; }
+</style>

@@ -1,0 +1,22 @@
+title: Lantern Drift
+order: 4
+featured: true
+year: 2025
+status: jam
+engine: Godot 4
+filters: [godot, jam]
+tags: [Godot, GDScript, 48 h]
+
+type:
+  de: Game Jam
+  en: Game jam
+role:
+  de: Programmierung, Leveldesign
+  en: Programming, level design
+summary:
+  de: Trag das Licht durch eine überflutete Stadt, bevor es erlischt. In 48 Stunden im Dreierteam entstanden.
+  en: Carry light through a flooded city before it goes out. Made in 48 hours with a team of three.
+
+links:
+  - label: { de: Auf itch.io spielen, en: Play on itch.io }
+    url: https://itch.io/

@@ -1,0 +1,245 @@
+# ─────────────────────────────────────────────────────────────
+# Alle Seitentexte auf Deutsch. en.yaml muss genau dieselben Schlüssel haben,
+# sonst stoppt der Build und nennt den fehlenden Schlüssel.
+# ─────────────────────────────────────────────────────────────
+
+meta:
+  description: Portfolio von Niklas Schumm, Game Developer mit Fokus auf Gameplay und Kampfsysteme in der Unreal Engine.
+
+nav:
+  home: Start
+  projects: Projekte
+  career: Werdegang
+  about: Über mich
+  devlog: Devlog
+  contact: Kontakt
+  cv: Lebenslauf
+  main: Hauptnavigation
+  language: Sprache
+  menu_open: Menü öffnen
+  menu_close: Menü schließen
+  skip: Zum Inhalt springen
+
+footer:
+  tagline: Game Developer mit Fokus auf Gameplay und Kampfsysteme in der Unreal Engine.
+  site: Seiten
+  elsewhere: Anderswo
+  contact: Kontakt
+  form: Kontaktformular
+  cv: Lebenslauf (PDF)
+  rights: Alle Rechte vorbehalten.
+
+common:
+  view_project: Projekt ansehen
+  all_projects: Alle Projekte
+  read: Lesen
+  min_read: Min. Lesezeit
+  role: Rolle
+  next: Weiter
+
+home:
+  title: Game Developer
+  hero_eyebrow: Game Developer · Unreal Engine
+  hero_title: Niklas Schumm.
+  hero_title_gold: Kämpfe, die sich richtig anfühlen.
+  hero_text: Ich entwerfe und baue Third-Person-Actionspiele in der Unreal Engine. Gameplay-Systeme, Kampfgefühl und die Tools dahinter.
+  cta_projects: Projekte ansehen
+  cta_contact: Kontakt aufnehmen
+  showreel: Showreel
+  showreel_caption: "Showreel 2026: Kampf, Bewegung und Prototypen."
+  spotlight_eyebrow: Aktuelles Projekt
+  spotlight_explore: Zum Projekt
+  spotlight_devlog: Zum Devlog
+  work_eyebrow: Ausgewählte Arbeiten
+  work_title: Kleine Spiele. Klare Ideen.
+  do_eyebrow: Was ich mache
+  do_title: Systeme, die man in den Händen spürt.
+  do_items:
+    - title: Gameplay-Programmierung
+      text: Character Controller, Fähigkeiten und State Machines in Blueprints und C++.
+    - title: Kampfdesign
+      text: Hit Stop, Input Buffer, Combo-Graphen und Gegner, die sich klar lesen lassen.
+    - title: Tools und Pipeline
+      text: Editor-Tools und Asset-Workflows, die ein kleines Team schnell machen.
+  stat_projects: Projekte
+  stat_jams: Game Jams
+  stat_years: Jahre mit Engines
+  about_eyebrow: Über mich
+  about_title: Hi, ich bin Niklas.
+  about_text: Tagsüber halte ich als IT-Azubi drei Standorte am Laufen. Tickets, Hardware, Produktionsterminals. Abends baue ich Spiele. Einen Drucker zu debuggen und ein Combo-System zu debuggen hat mehr gemeinsam, als man denkt.
+  about_more: Mehr über mich
+  about_career: Mein Werdegang
+  devlog_title: Aus dem Devlog
+  devlog_all: Alle Beiträge
+  cta_title: Lass uns etwas bauen, das
+  cta_title_gold: einschlägt.
+  cta_text: Offen für Praktika, Junior-Gameplay-Stellen und Game-Jam-Teams.
+  cta_cv: Lebenslauf laden
+
+projects:
+  title: Projekte
+  eyebrow: Projekte
+  heading: Alles, was ich gebaut habe. Bis jetzt.
+  intro: Jam-Spiele, Prototypen und Tools. Jedes hat mir etwas beigebracht, das das nächste gebraucht hat.
+  featured: Hauptprojekt
+  case_study: Zur Projektseite
+  filter_label: Projekte filtern
+  filters:
+    all: Alle
+    unreal: Unreal Engine
+    godot: Godot
+    jam: Game Jams
+    tool: Tools
+  count_one: 1 Projekt
+  count_many: "{n} Projekte"
+  cta_title: Jeder Build hat eine Geschichte.
+  cta_text: Postmortems, Breakdowns und die Bugs, aus denen ich am meisten gelernt habe.
+  cta_button: Zum Devlog
+
+status:
+  released: Veröffentlicht
+  in-development: In Entwicklung
+  prototype: Prototyp
+  jam: Jam-Spiel
+
+project:
+  back: Alle Projekte
+  sections_label: Projektabschnitte
+  trailer: Trailer ansehen
+  devlog: Zum Devlog
+  fact_role: Rolle
+  fact_engine: Engine
+  fact_year: Jahr
+  fact_status: Status
+  overview: Überblick
+  overview_eyebrow: Die Idee
+  loop_label: Spielablauf
+  features: Gameplay
+  art: Art Style
+  palette: Farbpalette
+  gallery: Galerie
+  gallery_title: Work in Progress.
+  tech_eyebrow: Unter der Haube
+  tech_title: So ist es gebaut.
+  learnings: Learnings
+  learnings_eyebrow: Bisherige Learnings
+  more: Weitere Projekte
+
+career:
+  title: Werdegang
+  eyebrow: Werdegang
+  heading: Vom Helpdesk zum Hit Stop.
+  intro: Tagsüber IT-Ausbildung, abends Spieleentwicklung. Hier ist mein bisheriger Weg, und wohin er führt.
+  link_cv: Lebenslauf herunterladen
+  link_skills: Skills und Tools
+  timeline: Zeitleiste
+  kinds:
+    project: Projekt
+    work: Beruf
+    jam: Game Jam
+    education: Schule
+    tool: Tool
+  next_eyebrow: Wie es weitergeht
+  next_title: Eine erste Stelle in einem Spieleteam.
+  next_text: Ich suche ein Praktikum oder eine Junior-Stelle als Gameplay Programmer. Remote oder vor Ort in Deutschland.
+  next_button: Schreib mir
+  skills_eyebrow: Skills und Tools
+  skills_title: Womit ich arbeite.
+  languages: Sprachen
+  courses: Kurse und Zertifikate
+  cv_title: Das ganze Bild, auf einer Seite.
+  cv_text: Mein Lebenslauf als PDF, auf Deutsch und auf Englisch.
+  cv_main: Lebenslauf auf Deutsch (PDF)
+  cv_other: CV in English (PDF)
+
+about:
+  title: Über mich
+  eyebrow: Über mich
+  heading: Ich bin Niklas.
+  heading_2: Ich baue Spiele und repariere Drucker.
+  intro: IT-Azubi im zweiten Jahr, Spieleentwickler im Selbststudium und jemand, der Patch Notes zum Spaß liest.
+  portrait: Porträt von Niklas Schumm
+  story_title: Wie alles anfing.
+  story:
+    - Ich war zwölf, als mich ein Bosskampf fragen ließ, wie das alles unter der Haube funktioniert. Angefangen habe ich mit kleinen Godot-Projekten, von denen ich fast keins fertig gemacht habe. Dabei habe ich gelernt, dass Fertigmachen eine eigene Fähigkeit ist.
+    - Heute arbeite ich im IT-Support eines Herstellers mit Standorten in Deutschland und im Ausland. Tickets, Hardware, Drucker und Produktionsterminals. Dabei habe ich gelernt, ruhig zu bleiben, wenn etwas kaputtgeht, und erst die Ursache zu finden, bevor ich repariere.
+    - Genau diese Denkweise nehme ich in die Spieleentwicklung mit. Kintsugi, mein aktuelles Projekt, ist das Größte, was ich bisher angegangen bin, und das, was am meisten Spaß macht.
+  based_in: Wohnort
+  principles_eyebrow: Wie ich arbeite
+  principles_title: Drei Regeln, an die ich mich halte.
+  principles:
+    - title: Gefühl vor Features
+      text: Ein Angriff, der sich großartig anfühlt, schlägt zehn mittelmäßige.
+    - title: Dinge fertig machen
+      text: Klein und veröffentlicht lehrt mehr als groß und abgebrochen.
+    - title: Öffentlich lernen
+      text: Jeder Bug, den ich behebe, landet im Devlog, für den Nächsten.
+  games_title: Spiele, die mich geprägt haben.
+  offscreen_eyebrow: Abseits des Bildschirms
+  offscreen_title: Wenn ich nicht an der Tastatur sitze.
+  cta_title: Sag Hallo.
+  cta_text: Fragen, Jam-Einladungen oder Feedback zu Kintsugi. Ich lese alles.
+  cta_contact: Kontakt aufnehmen
+  cta_career: Mein Werdegang
+
+contact:
+  title: Kontakt
+  eyebrow: Kontakt
+  heading: Lass uns über Spiele reden.
+  intro: Jobangebote, Jam-Teams, Feedback oder eine kurze Frage. Ich antworte meistens innerhalb von zwei Tagen.
+  form_title: Nachricht senden
+  name: Name
+  name_placeholder: Dein Name
+  email: E-Mail
+  email_placeholder: du@beispiel.de
+  topic: Thema
+  topics:
+    - Job oder Praktikum
+    - Game-Jam-Team
+    - Feedback zu Kintsugi
+    - Etwas anderes
+  message: Nachricht
+  message_placeholder: Was hast du auf dem Herzen?
+  privacy: Ich bin einverstanden, dass meine Angaben zur Beantwortung meiner Nachricht verwendet werden. Mehr dazu in der
+  privacy_link: Datenschutzerklärung
+  required: Alle Felder sind Pflichtfelder.
+  send: Nachricht senden
+  mail_title: Lieber per E-Mail?
+  availability: Verfügbarkeit
+  based_in: "Wohnort {location}, offen für Remote-Arbeit."
+  elsewhere: Anderswo
+  faq_title: Gut zu wissen
+  faq:
+    - q: Kann ich deine Spiele spielen?
+      a: Die meisten Jam-Spiele gibt es kostenlos auf itch.io. Kintsugi-Builds gehen zuerst an Tester.
+    - q: Machst du bei Jam-Teams mit?
+      a: Ja. Meistens als Gameplay-Programmierer, in Unreal oder Godot.
+    - q: Deutsch oder Englisch?
+      a: Beides passt. Feel free to write in English.
+
+devlog:
+  title: Devlog
+  eyebrow: Devlog
+  heading: Notizen aus der Werkstatt.
+  intro: Fortschritte an Kintsugi, Jam-Postmortems und die Bugs, die es wert sind, aufgeschrieben zu werden.
+  latest: Neu
+  read_post: Beitrag lesen
+  filter_label: Beiträge filtern
+  all: Alle
+  categories:
+    kintsugi: Kintsugi
+    tools: Tools
+    tutorial: Tutorials
+    postmortem: Postmortems
+  back: Alle Beiträge
+  newsletter_title: Neue Beiträge, direkt zu dir.
+  newsletter_text: Etwa eine E-Mail im Monat. Kein Spam, jederzeit abbestellbar.
+  newsletter_label: E-Mail-Adresse
+  newsletter_placeholder: du@beispiel.de
+  newsletter_button: Abonnieren
+
+not_found:
+  title: Diese Seite ist zerbrochen.
+  text: Wie gute Keramik lässt sie sich flicken. Bis dahin bringt dich einer dieser Links ans Ziel.
+  home: Zur Startseite
+  projects: Projekte ansehen

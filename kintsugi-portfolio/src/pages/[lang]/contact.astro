@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTexts, pick, url, langPaths, otherLang, fill, type Lang } from '../../lib/i18n';
+import { site } from '../../lib/data';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const t = useTexts(lang);
+const c = t.contact;
+const action = site.contactFormAction;
+---
+
+<Layout lang={lang} title={c.title} active="contact" alternate={url(otherLang(lang), 'contact/')}>
+  <section class="section" style="padding-bottom: 48px">
+    <div class="container stack">
+      <p class="eyebrow">{c.eyebrow}</p>
+      <h1 class="h1">{c.heading}</h1>
+      <p class="lead">{c.intro}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container row" style="align-items: flex-start; --gap: 32px">
+      <div class="card" style="flex: 3 1 500px; min-width: 0; padding: 32px">
+        <form class="stack" style="--gap: 20px" method="post" action={action || undefined}
+          data-mailto={action ? undefined : site.email}>
+          <h2 class="h3" style="font-size: 24px">{c.form_title}</h2>
+          <div class="grid" style="--min: 220px; --gap: 16px">
+            <div class="field">
+              <label for="c-name">{c.name}</label>
+              <input class="input" id="c-name" name="name" autocomplete="name" placeholder={c.name_placeholder} required />
+            </div>
+            <div class="field">
+              <label for="c-email">{c.email}</label>
+              <input class="input" id="c-email" name="email" type="email" autocomplete="email" placeholder={c.email_placeholder} required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-topic">{c.topic}</label>
+            <select class="input" id="c-topic" name="topic">
+              {c.topics.map((topic: string) => <option>{topic}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-msg">{c.message}</label>
+            <textarea class="input" id="c-msg" name="message" rows="6" placeholder={c.message_placeholder} required></textarea>
+          </div>
+          <label class="check">
+            <input type="checkbox" name="privacy" required />
+            <span>{c.privacy} <a href="/datenschutz/">{c.privacy_link}</a>.</span>
+          </label>
+          <div class="row" style="--gap: 16px">
+            <button class="btn btn--gold" type="submit">{c.send}</button>
+            <span class="xs muted">{c.required}</span>
+          </div>
+        </form>
+      </div>
+
+      <aside class="stack" style="flex: 2 1 300px; min-width: 0; --gap: 24px">
+        <a class="card mail" href={`mailto:${site.email}`}>
+          <span class="xs" style="color: var(--on-dark-muted)">{c.mail_title}</span>
+          <span class="mail__address">{site.email}</span>
+        </a>
+        <div class="card stack" style="--gap: 12px">
+          <h2 class="h4">{c.availability}</h2>
+          {site.availability.open && (
+            <p class="row small" style="--gap: 8px"><span class="dot" aria-hidden="true"></span>{pick(site.availability.text, lang)}</p>
+          )}
+          <p class="small muted">{pick(site.availability.from, lang)}. {fill(c.based_in, { location: pick(site.location, lang) })}</p>
+        </div>
+        <div class="card stack links" style="--gap: 0">
+          <h2 class="h4" style="margin-bottom: 8px">{c.elsewhere}</h2>
+          {site.socials.map((s) => <a href={s.url} rel="me noopener"><span>{s.label}</span><span>›</span></a>)}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--parchment" style="margin-top: 80px">
+    <div class="container stack" style="--gap: 24px">
+      <h2 class="h2 h2--sm">{c.faq_title}</h2>
+      <div class="grid" style="--min: 260px">
+        {c.faq.map((f: { q: string; a: string }) => (
+          <div class="card stack" style="--gap: 8px">
+            <h3 class="h4">{f.q}</h3>
+            <p class="small text-2">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Ohne Formular-Dienst: Nachricht im E-Mail-Programm öffnen.
+  const form = document.querySelector<HTMLFormElement>('form[data-mailto]');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const subject = `${data.get('topic')} – ${data.get('name')}`;
+    const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('email')}`;
+    window.location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+
+<style>
+  .mail { background: var(--tile-1); border-color: var(--gold-line); gap: 8px; }
+  .mail:hover { border-color: var(--gold); }
+  .mail__address { font-size: 21px; font-weight: 600; letter-spacing: -0.231px; color: var(--gold-light); }
+  .dot { width: 10px; height: 10px; border-radius: 9999px; background: var(--gold); box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.2); }
+  .links a { min-height: 44px; display: flex; align-items: center; justify-content: space-between; font-size: 15px; }
+  .links a + a { border-top: 1px solid var(--divider); }
+</style>

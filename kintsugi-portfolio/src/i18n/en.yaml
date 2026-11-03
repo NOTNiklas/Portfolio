@@ -1,0 +1,245 @@
+# ─────────────────────────────────────────────────────────────
+# All page copy in English. de.yaml must have exactly the same keys,
+# otherwise the build stops and names the missing key.
+# ─────────────────────────────────────────────────────────────
+
+meta:
+  description: Portfolio of Niklas Schumm, game developer focused on gameplay and combat in Unreal Engine.
+
+nav:
+  home: Home
+  projects: Projects
+  career: Career
+  about: About
+  devlog: Devlog
+  contact: Contact
+  cv: CV
+  main: Main navigation
+  language: Language
+  menu_open: Open menu
+  menu_close: Close menu
+  skip: Skip to content
+
+footer:
+  tagline: Game developer focused on gameplay and combat in Unreal Engine.
+  site: Site
+  elsewhere: Elsewhere
+  contact: Contact
+  form: Contact form
+  cv: CV (PDF)
+  rights: All rights reserved.
+
+common:
+  view_project: View project
+  all_projects: All projects
+  read: Read
+  min_read: min read
+  role: Role
+  next: Next
+
+home:
+  title: Game developer
+  hero_eyebrow: Game developer · Unreal Engine
+  hero_title: Niklas Schumm.
+  hero_title_gold: Combat that feels right.
+  hero_text: I design and build third-person action games in Unreal Engine. Gameplay systems, combat feel and the tools behind them.
+  cta_projects: View projects
+  cta_contact: Get in touch
+  showreel: Showreel
+  showreel_caption: "Showreel 2026: combat, traversal and prototypes."
+  spotlight_eyebrow: Now building
+  spotlight_explore: Explore the project
+  spotlight_devlog: Read the devlog
+  work_eyebrow: Selected work
+  work_title: Small games. Sharp ideas.
+  do_eyebrow: What I do
+  do_title: Systems you can feel in your hands.
+  do_items:
+    - title: Gameplay programming
+      text: Character controllers, abilities and state machines in Blueprints and C++.
+    - title: Combat design
+      text: Hit stop, input buffers, combo graphs and enemies that read clearly.
+    - title: Tools and pipeline
+      text: Editor tools and asset workflows that keep a small team fast.
+  stat_projects: Projects
+  stat_jams: Game jams
+  stat_years: Years in engines
+  about_eyebrow: About
+  about_title: Hi, I'm Niklas.
+  about_text: By day I keep three sites running as an IT apprentice. Tickets, hardware, production terminals. By night I build games. Debugging a printer and debugging a combo system have more in common than you'd think.
+  about_more: More about me
+  about_career: My path so far
+  devlog_title: From the devlog
+  devlog_all: All posts
+  cta_title: Let's build something that
+  cta_title_gold: hits hard.
+  cta_text: Open to internships, junior gameplay roles and game jam teams.
+  cta_cv: Download CV
+
+projects:
+  title: Projects
+  eyebrow: Projects
+  heading: Everything I've built. So far.
+  intro: Jam games, prototypes and tools. Each one taught me something the next one needed.
+  featured: Featured
+  case_study: Read the case study
+  filter_label: Filter projects
+  filters:
+    all: All
+    unreal: Unreal Engine
+    godot: Godot
+    jam: Game jams
+    tool: Tools
+  count_one: 1 project
+  count_many: "{n} projects"
+  cta_title: Every build has a story.
+  cta_text: Postmortems, breakdowns and the bugs that taught me the most.
+  cta_button: Read the devlog
+
+status:
+  released: Released
+  in-development: In development
+  prototype: Prototype
+  jam: Jam game
+
+project:
+  back: All projects
+  sections_label: Project sections
+  trailer: Watch the trailer
+  devlog: Read the devlog
+  fact_role: Role
+  fact_engine: Engine
+  fact_year: Year
+  fact_status: Status
+  overview: Overview
+  overview_eyebrow: The idea
+  loop_label: Core loop
+  features: Gameplay
+  art: Art style
+  palette: Palette
+  gallery: Gallery
+  gallery_title: Work in progress.
+  tech_eyebrow: Under the hood
+  tech_title: How it's built.
+  learnings: Learnings
+  learnings_eyebrow: Learnings so far
+  more: More projects
+
+career:
+  title: Career
+  eyebrow: Career
+  heading: From help desk to hit stop.
+  intro: An IT apprenticeship by day, game development by night. Here is the path so far, and where it is heading.
+  link_cv: Download CV
+  link_skills: Skills and tools
+  timeline: Timeline
+  kinds:
+    project: Project
+    work: Work
+    jam: Game jam
+    education: Education
+    tool: Tool
+  next_eyebrow: What's next
+  next_title: A first role on a game team.
+  next_text: Looking for an internship or junior gameplay programmer role. Remote or on site in Germany.
+  next_button: Talk to me
+  skills_eyebrow: Skills and tools
+  skills_title: What I work with.
+  languages: Languages
+  courses: Courses and certificates
+  cv_title: The full picture, on one page.
+  cv_text: Download my CV as a PDF, in English or German.
+  cv_main: CV in English (PDF)
+  cv_other: Lebenslauf auf Deutsch (PDF)
+
+about:
+  title: About
+  eyebrow: About
+  heading: I'm Niklas.
+  heading_2: I build games and fix printers.
+  intro: Second-year IT apprentice, self-taught game developer and the person who reads patch notes for fun.
+  portrait: Portrait of Niklas Schumm
+  story_title: How it started.
+  story:
+    - I was twelve when a boss fight made me wonder how it all worked under the hood. I started with small Godot projects, finished almost none of them, and learned that finishing is a skill of its own.
+    - Today I work in IT support for a manufacturer with sites across Germany and abroad. Tickets, hardware, printers and production terminals. It taught me to stay calm when things break and to find the cause before the fix.
+    - That mindset goes straight into game development. Kintsugi, my current project, is the biggest thing I have attempted, and the most fun.
+  based_in: Based in
+  principles_eyebrow: How I work
+  principles_title: Three rules I try to keep.
+  principles:
+    - title: Feel over features
+      text: One great-feeling attack beats ten mediocre ones.
+    - title: Finish things
+      text: Small and shipped teaches more than big and abandoned.
+    - title: Learn in public
+      text: Every bug I fix ends up in the devlog for the next person.
+  games_title: Games that shaped me.
+  offscreen_eyebrow: Off screen
+  offscreen_title: When I'm not at a keyboard.
+  cta_title: Say hello.
+  cta_text: Questions, jam invites or feedback on Kintsugi. I read everything.
+  cta_contact: Get in touch
+  cta_career: See my path
+
+contact:
+  title: Contact
+  eyebrow: Contact
+  heading: Let's talk games.
+  intro: Job offers, jam teams, feedback or a quick question. I usually reply within two days.
+  form_title: Send a message
+  name: Name
+  name_placeholder: Your name
+  email: Email
+  email_placeholder: you@example.com
+  topic: Topic
+  topics:
+    - Job or internship
+    - Game jam team
+    - Feedback on Kintsugi
+    - Something else
+  message: Message
+  message_placeholder: What's on your mind?
+  privacy: I agree that my data is used to answer my message. More in the
+  privacy_link: privacy policy
+  required: All fields are required.
+  send: Send message
+  mail_title: Prefer email?
+  availability: Availability
+  based_in: "Based in {location}, open to remote work."
+  elsewhere: Elsewhere
+  faq_title: Good to know
+  faq:
+    - q: Can I play your games?
+      a: Most jam games are free on itch.io. Kintsugi builds go to testers first.
+    - q: Do you join jam teams?
+      a: Yes. Usually as gameplay programmer, in Unreal or Godot.
+    - q: German or English?
+      a: Both work. Schreib mir gern auf Deutsch.
+
+devlog:
+  title: Devlog
+  eyebrow: Devlog
+  heading: Notes from the workbench.
+  intro: Progress on Kintsugi, jam postmortems and the bugs worth writing down.
+  latest: Latest
+  read_post: Read the post
+  filter_label: Filter posts
+  all: All
+  categories:
+    kintsugi: Kintsugi
+    tools: Tools
+    tutorial: Tutorials
+    postmortem: Postmortems
+  back: All posts
+  newsletter_title: New posts, straight to you.
+  newsletter_text: About one email a month. No spam, unsubscribe any time.
+  newsletter_label: Email address
+  newsletter_placeholder: you@example.com
+  newsletter_button: Subscribe
+
+not_found:
+  title: This page broke.
+  text: Like good pottery, it can be mended. Until then, one of these should get you where you want to go.
+  home: Back to home
+  projects: See projects

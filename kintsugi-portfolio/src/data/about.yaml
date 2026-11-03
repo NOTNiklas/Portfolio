@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────
+# Persönliche Angaben für "Über mich".
+# Der Wohnort kommt automatisch aus site.yaml.
+# ─────────────────────────────────────────────────────────────
+
+facts:
+  - label: { de: Hauptberuf, en: Day job }
+    value: { de: IT-Azubi, en: IT apprentice }
+  - label: { de: Lieblings-Engine, en: Engine of choice }
+    value: { de: Unreal Engine, en: Unreal Engine }
+  - label: { de: Lieblingsgenre, en: Favorite genre }
+    value: { de: "Action, Soulslikes", en: "Action, soulslikes" }
+  - label: { de: Spiele gerade, en: Currently playing }
+    value: { de: Hades II, en: Hades II }
+
+games:
+  - title: "Sekiro: Shadows Die Twice"
+    cover: ""
+    why:
+      de: Das Kampfsystem, wegen dem ich Haltung, Paraden und Hit Stop studiert habe.
+      en: The combat that made me study posture, parries and hit stop.
+  - title: Hollow Knight
+    cover: ""
+    why:
+      de: Der Beweis, dass ein winziges Team etwas Riesiges veröffentlichen kann.
+      en: Proof that a tiny team can ship something huge.
+  - title: Ōkami
+    cover: ""
+    why:
+      de: Eine mit Tusche gemalte Welt, die ihre Geschichte über ihren Stil erzählt.
+      en: An ink-painted world that tells its story through its style.
+  - title: Devil May Cry 5
+    cover: ""
+    why:
+      de: Das erste Spiel, das ich im Kopf auseinandergenommen habe, Combo für Combo.
+      en: The first game I took apart in my head, combo by combo.
+
+hobbies:
+  - title: { de: Volleyball, en: Volleyball }
+    image: ""
+    text:
+      de: Auf dem Feld und hinter der Website des Vereins.
+      en: On court and behind the club's website.
+  - title: { de: Kochen, en: Cooking }
+    image: ""
+    text:
+      de: Rezepte sind auch nur Systeme, mit leckererem Ergebnis.
+      en: Recipes are just systems with a tastier output.
+  - title: { de: Skizzieren, en: Sketching }
+    image: ""
+    text:
+      de: Figuren entstehen auf Papier, lange bevor sie in Blender landen.
+      en: Characters start on paper long before they reach Blender.

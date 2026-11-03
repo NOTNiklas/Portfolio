@@ -1,0 +1,63 @@
+# ─────────────────────────────────────────────────────────────
+# Werdegang. Neueste Einträge oben.
+# kind: project | work | jam | education | tool
+# current: true = goldener, gefüllter Punkt (läuft gerade)
+# ─────────────────────────────────────────────────────────────
+
+- when: { de: 2026 – heute, en: 2026 – now }
+  kind: project
+  current: true
+  title: { de: Kintsugi, en: Kintsugi }
+  text:
+    de: Solo-Third-Person-Hack-’n’-Slash in der Unreal Engine 5.8. Kampfsystem, Character-Pipeline und Tusche-Shading.
+    en: Solo third-person hack ’n’ slash in Unreal Engine 5.8. Combat, character pipeline and ink shading.
+
+- when: { de: "2026", en: "2026" }
+  kind: tool
+  title: { de: Combo-Graph-Plugin, en: Combo Graph plugin }
+  text:
+    de: Einen Node-basierten Combo-Editor für die Unreal Engine als Open Source veröffentlicht.
+    en: Released a node-based combo editor for Unreal Engine as open source.
+
+- when: { de: 2025 – 2028, en: 2025 – 2028 }
+  kind: work
+  current: true
+  title: { de: IT-Ausbildung, en: IT apprenticeship }
+  text:
+    de: IT-Support für drei Standorte. Ticketsystem, Hardware, Drucker und Produktionsterminals. Abschluss voraussichtlich 2028.
+    en: IT support for three sites. Ticket system, hardware, printers and production terminals. Expected completion in 2028.
+
+- when: { de: "2025", en: "2025" }
+  kind: jam
+  title: { de: GMTK Game Jam · Lantern Drift, en: GMTK Game Jam · Lantern Drift }
+  text:
+    de: Programmierung und Leveldesign im Dreierteam.
+    en: Programming and level design in a team of three.
+
+- when: { de: "2025", en: "2025" }
+  kind: project
+  title: { de: Ashfall Arena, en: Ashfall Arena }
+  text:
+    de: Erster Netzwerk-Prototyp. Replizierte Fähigkeiten, Knockback und Trefferfeedback.
+    en: First networked prototype. Replicated abilities, knockback and hit feel.
+
+- when: { de: "2025", en: "2025" }
+  kind: education
+  title: { de: Schulabschluss, en: Secondary school diploma }
+  text:
+    de: Abschluss mit Schwerpunkt Informatik und Mathematik.
+    en: Graduated with a focus on computer science and math.
+
+- when: { de: "2024", en: "2024" }
+  kind: jam
+  title: { de: Ludum Dare · Hollow Signal, en: Ludum Dare · Hollow Signal }
+  text:
+    de: Solo-Radio-Horror in 72 Stunden. Mein erster Jam in der Unreal Engine.
+    en: Solo radio horror short in 72 hours. First jam in Unreal Engine.
+
+- when: { de: "2024", en: "2024" }
+  kind: project
+  title: { de: Tiny Forge, en: Tiny Forge }
+  text:
+    de: Mein erster fertiger Gameplay-Loop. Pixel-Art-Crafting-Prototyp fürs Handy in Godot.
+    en: First finished game loop. Pixel-art crafting prototype for phones in Godot.

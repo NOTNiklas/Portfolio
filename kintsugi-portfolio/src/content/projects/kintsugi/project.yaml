@@ -1,0 +1,142 @@
+# ─────────────────────────────────────────────────────────────
+# Projekt: Kintsugi
+# Langtext der Projektseite: de.md und en.md in diesem Ordner
+# Bilder: unter public/images/projects/kintsugi/ ablegen und hier eintragen
+# ─────────────────────────────────────────────────────────────
+
+title: Kintsugi
+order: 1
+spotlight: true # großer Bereich auf der Startseite und oben auf der Projektseite
+featured: false # zusätzlich als Karte auf der Startseite
+year: 2026
+status: in-development
+engine: Unreal Engine 5.8
+filters: [unreal]
+tags: [Unreal Engine, C++, Blueprints]
+
+type: { de: Soloprojekt, en: Solo project }
+role: { de: "Design, Gameplay, Kampfsystem", en: "Design, gameplay, combat" }
+
+summary:
+  de: Third-Person-Hack-’n’-Slash in einer Sumi-e-Tuschewelt. Nahkampf rund um Timing und Haltungsbrüche.
+  en: Third-person hack ’n’ slash in a sumi-e ink world. Melee combat built on timing and stance breaks.
+tagline:
+  de: Zerbrochenes, mit Gold geflickt.
+  en: Broken things, mended in gold.
+intro:
+  de: Ein Third-Person-Hack-’n’-Slash über einen Schwertkämpfer, der eine zerbrochene Welt Kampf für Kampf wieder zusammensetzt. Solo entwickelt in der Unreal Engine 5.8.
+  en: A third-person hack ’n’ slash about a swordsman who repairs a shattered world, one fight at a time. Built solo in Unreal Engine 5.8.
+
+cover: ""
+keyArt: "" # leer = gezeichnete Tusche-Grafik
+trailer: "" # z. B. /video/kintsugi-trailer.mp4
+
+extraFacts:
+  - label: { de: Genre, en: Genre }
+    value: { de: Hack ’n’ Slash, en: Hack ’n’ slash }
+  - label: { de: Plattform, en: Platform }
+    value: { de: PC (geplant), en: PC (planned) }
+
+links:
+  - label: { de: Auf itch.io folgen, en: Follow on itch.io }
+    url: https://itch.io/
+
+loop:
+  heading: { de: Lesen. Brechen. Flicken., en: Read. Break. Mend. }
+  text:
+    de: Nahkampf auf kurze Distanz mit klaren Signalen, engem Timing und einer Belohnung für jedes Risiko.
+    en: Close-range melee with clear tells, tight timing and a reward for every risk.
+  steps:
+    - { de: Erkunden, en: Explore }
+    - { de: Kämpfen, en: Fight }
+    - { de: Brechen, en: Break }
+    - { de: Flicken, en: Mend }
+    - { de: Wachsen, en: Grow }
+
+features:
+  - title: { de: Haltung und Bruch, en: Stance and break }
+    text:
+      de: Jeder Gegner hat eine Haltungsleiste. Brich sie, und eine Goldnaht öffnet sich für einen Finisher.
+      en: Every enemy has a stance meter. Break it and a gold seam opens for a finisher.
+  - title: { de: Perfekte Parade, en: Perfect parry }
+    text:
+      de: Ein enges Zeitfenster. Triffst du es, wehrst du ab und heilst ein Stück deiner Gesundheit.
+      en: A tight timing window. Land it to deflect and mend a piece of your own health.
+  - title: { de: Goldflicken, en: Gold mending }
+    text:
+      de: Geheilte Wunden werden zu Gold und verstärken deine nächsten Schläge.
+      en: Repaired wounds turn to gold and make your next strikes stronger.
+  - title: { de: Combo-Graph, en: Combo graph }
+    text:
+      de: Leichte, schwere und Tusche-Angriffe verzweigen sich zu Combos mit Cancel-Fenstern.
+      en: Light, heavy and ink attacks branch into combos with cancel windows.
+  - title: { de: Tusche-Dash, en: Ink dash }
+    text:
+      de: Ein kurzer Ausweichschritt, der einen Pinselstrich hinterlässt. Mit gutem Timing durch Angriffe hindurch.
+      en: A short dodge that leaves a brush stroke. Dash through attacks with good timing.
+  - title: { de: Lesbare Gegner, en: Readable enemies }
+    text:
+      de: Silhouetten in Tusche, Signale in Gold. Du weißt immer, was kommt.
+      en: Silhouettes in ink, tells in gold. You always know what is coming.
+
+art:
+  heading: { de: "Tusche auf Papier, in drei Dimensionen.", en: "Ink on paper, in three dimensions." }
+  text:
+    de: Stilisiertes 3D, schattiert wie japanische Sumi-e-Malerei. Schwarze Tusche, graue Lavierungen und die Körnung von Papier. Gold ist die einzige warme Farbe im Spiel, so landet der Blick immer dort, wo es zählt.
+    en: Stylized 3D shaded like Japanese sumi-e painting. Black ink, grey washes and the grain of paper. Gold is the only warm color in the game, so the eye always lands on what matters.
+  palette:
+    - { name: { de: Tusche, en: Ink }, hex: "#1D1D1F" }
+    - { name: { de: Lavierung, en: Wash }, hex: "#8A8A8E" }
+    - { name: { de: Papier, en: Paper }, hex: "#F2EEE6" }
+    - { name: { de: Gold, en: Gold }, hex: "#D9A441" }
+  concepts:
+    - caption:
+        de: Ren, der Flicker. In Einzelteile zerlegt für die 3D-Generierung.
+        en: Ren, the mender. Broken into parts for 3D generation.
+      src: ""
+    - caption:
+        de: Das Katana bekommt mit jeder Reparatur eine neue Goldnaht.
+        en: The katana gains a gold seam with every repair.
+      src: ""
+    - caption:
+        de: Menüs, gezeichnet wie Tusche auf einer Schriftrolle.
+        en: Menus drawn as ink on a scroll.
+      src: ""
+
+gallery:
+  - { caption: { de: "Erster Gegner, graue Box", en: "First enemy, grey box" }, src: "" }
+  - { caption: { de: Tusche-Outline-Pass, en: Ink outline pass }, src: "" }
+  - { caption: { de: Debug-Ansicht des Paradefensters, en: Parry window debug view }, src: "" }
+  - { caption: { de: "Level: die zerbrochene Brücke", en: Broken bridge level }, src: "" }
+  - { caption: { de: "VFX: Goldflicken", en: Gold mending VFX }, src: "" }
+  - { caption: { de: "Mockup: Inventar als Schriftrolle", en: Inventory scroll mockup }, src: "" }
+
+tech:
+  - title: { de: Unreal Engine 5.8, en: Unreal Engine 5.8 }
+    text: { de: "Blueprints zum Iterieren, C++ für den Kern des Kampfsystems.", en: "Blueprints for iteration, C++ for the combat core." }
+  - title: { de: Fähigkeitensystem, en: Ability system }
+    text: { de: "Angriffe, Paraden und Flicken als datengetriebene Fähigkeiten.", en: "Attacks, parries and mending as data-driven abilities." }
+  - title: { de: Eigene Character-Pipeline, en: Custom character pipeline }
+    text:
+      de: Einzelteile als Bilder generiert, in 3D umgewandelt, geriggt und auf UE5-Animationen retargetet.
+      en: Parts generated as images, turned into 3D, rigged and retargeted to UE5 animations.
+  - title: { de: Tusche-Shading, en: Ink shading }
+    text: { de: "Post-Process-Outlines, Papierkörnung und ein Emissive-Kanal nur für Gold.", en: "Post-process outlines, paper grain and a gold-only emissive channel." }
+  - title: { de: Niagara-VFX, en: Niagara VFX }
+    text: { de: "Tuschespritzer bei Treffern, Goldnähte beim Reparieren.", en: "Ink splashes on hit, gold seams on repair." }
+
+learnings:
+  heading: { de: "Was kaputtging, und was ich geflickt habe.", en: "What broke, and what I mended." }
+  items:
+    - title: { de: "Erst die Größe, dann die Animation", en: "Scale before animation" }
+      text:
+        de: Ein eigenes Skelett hat meinen Helden beim Retargeting geschrumpft. Root und Pelvis zuerst zu korrigieren, hat später Tage gespart.
+        en: A custom skeleton shrank my hero on retarget. Fixing root and pelvis first saved days later.
+    - title: { de: "Erst das Gefühl, dann der Inhalt", en: "Feel first, content later" }
+      text:
+        de: Ein Gegner in einer grauen Box, bis sich das Treffen gut anfühlte. Erst dann kam der zweite.
+        en: One enemy in a grey box until hitting it felt good. Only then a second one.
+    - title: { de: Eine Akzentfarbe ist eine Regel, en: One accent color is a rule }
+      text:
+        de: Wärme nur in Gold zu erlauben, hat Lesbarkeit zu einem Designwerkzeug gemacht.
+        en: Limiting warmth to gold made readability a design tool, not an afterthought.

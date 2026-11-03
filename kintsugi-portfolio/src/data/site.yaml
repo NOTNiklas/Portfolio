@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────────────────────
+# Allgemeine Angaben. Gelten auf allen Seiten in beiden Sprachen.
+# ─────────────────────────────────────────────────────────────
+
+name: Niklas Schumm
+email: niklas.schumm44@gmail.com
+
+# Ort, wie er auf der Website erscheint (keine genaue Adresse, die steht nur in legal.yaml)
+location:
+  de: Thalfang
+  en: Thalfang, Germany
+
+# Seit wann du mit Engines arbeitest. Daraus wird "Jahre mit Engines" berechnet.
+startedYear: 2025
+
+availability:
+  open: false # false blendet den goldenen Punkt "offen für Angebote" aus
+  text:
+    de: Offen für Praktika und Junior-Stellen
+    en: Open to internships and junior roles
+  from:
+    de: Vollzeit ab Sommer 2027
+    en: Full-time from summer 2027
+
+socials:
+  - label: itch.io
+    url: https://itch.io/
+  - label: ArtStation
+    url: https://www.artstation.com/
+  - label: GitHub
+    url: https://github.com/
+  - label: LinkedIn
+    url: https://www.linkedin.com/
+  - label: YouTube
+    url: https://www.youtube.com/
+
+# Lebenslauf-PDFs. Lege die Dateien unter public/cv/ ab.
+cv:
+  de: /cv/lebenslauf-niklas-schumm.pdf
+  en: /cv/cv-niklas-schumm.pdf
+
+# Showreel als eigene Videodatei unter public/video/ (kein YouTube nötig, DSGVO-freundlich).
+# Leer lassen = Platzhalter wird angezeigt.
+showreel:
+  video: ""
+  poster: ""
+
+# Porträtfoto unter public/images/. Leer = grauer Platzhalter.
+portrait: ""
+
+# Kontaktformular: Adresse eines Formular-Dienstes (z. B. Formspree).
+# Leer = das Formular öffnet stattdessen das E-Mail-Programm.
+contactFormAction: "<!-- modify this form HTML and place wherever you want your form -->
+<form
+  action="https://formspree.io/f/maeelrdo"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>"
+
+# Newsletter-Anmeldung: Adresse deines Newsletter-Dienstes.
+# Leer = der Newsletter-Bereich im Devlog wird ausgeblendet.
+newsletterAction: ""

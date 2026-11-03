@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Seam from '../../components/Seam.astro';
+import { useTexts, pick, url, langPaths, otherLang, type Lang } from '../../lib/i18n';
+import { site, timeline, skills } from '../../lib/data';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const other = otherLang(lang);
+const t = useTexts(lang);
+---
+
+<Layout lang={lang} title={t.career.title} active="career" alternate={url(other, 'career/')}>
+  <section class="section" style="padding-bottom: 48px">
+    <div class="container stack">
+      <p class="eyebrow">{t.career.eyebrow}</p>
+      <h1 class="h1">{t.career.heading}</h1>
+      <p class="lead">{t.career.intro}</p>
+      <div class="row">
+        <a href="#cv">{t.career.link_cv} ›</a>
+        <a href="#skills">{t.career.link_skills} ›</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="timeline-h">
+    <div class="container">
+      <h2 id="timeline-h" class="h2 h2--sm" style="margin-bottom: 24px">{t.career.timeline}</h2>
+      <ol class="timeline">
+        {timeline.map((e, i) => (
+          <li class:list={{ current: e.current, first: i === 0, last: i === timeline.length - 1 }}>
+            <div class="timeline__when small">{pick(e.when, lang)}</div>
+            <div class="timeline__line" aria-hidden="true"><span></span></div>
+            <article class="card timeline__card stack" style="--gap: 6px">
+              <span class="chip chip--sm" style="align-self: flex-start">{t.career.kinds[e.kind]}</span>
+              <h3 class="h3">{pick(e.title, lang)}</h3>
+              <p class="small text-2">{pick(e.text, lang)}</p>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <Seam variant={1} />
+
+  <section class="section section--dark">
+    <div class="container row" style="--gap: 32px">
+      <div class="stack" style="flex: 2 1 460px; --gap: 12px">
+        <p class="eyebrow">{t.career.next_eyebrow}</p>
+        <h2 class="h2">{t.career.next_title}</h2>
+        <p class="muted">{pick(site.availability.from, lang)}. {t.career.next_text}</p>
+      </div>
+      <a class="btn btn--gold" href={url(lang, 'contact/')}>{t.career.next_button}</a>
+    </div>
+  </section>
+
+  <Seam variant={2} />
+
+  <section class="section section--parchment" id="skills">
+    <div class="container stack" style="--gap: 32px">
+      <div class="stack" style="--gap: 8px">
+        <p class="eyebrow">{t.career.skills_eyebrow}</p>
+        <h2 class="h2">{t.career.skills_title}</h2>
+      </div>
+      <div class="grid" style="--min: 220px">
+        {skills.groups.map((g) => (
+          <div class="card stack" style="--gap: 14px">
+            <h3 class="h4">{pick(g.title, lang)}</h3>
+            <ul class="chips">{g.items.map((s) => <li class="chip">{pick(s, lang)}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <div class="grid" style="--min: 300px">
+        <div class="card stack" style="--gap: 10px">
+          <h3 class="h4">{t.career.languages}</h3>
+          <p class="small text-2">{pick(skills.languages, lang)}</p>
+        </div>
+        <div class="card stack" style="--gap: 10px">
+          <h3 class="h4">{t.career.courses}</h3>
+          <p class="small text-2">{pick(skills.courses, lang)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Seam variant={0} />
+
+  <section class="section section--dark-3" id="cv" style="padding-block: 96px">
+    <div class="container--narrow stack center" style="--gap: 20px">
+      <h2 class="h2 h2--lg">{t.career.cv_title}</h2>
+      <p class="muted">{t.career.cv_text}</p>
+      <div class="row center" style="--gap: 12px">
+        <a class="btn btn--gold" href={site.cv[lang]} download>{t.career.cv_main}</a>
+        <a class="btn btn--ghost" href={site.cv[other]} lang={other} download>{t.career.cv_other}</a>
+      </div>
+    </div>
+  </section>
+  <Seam variant={1} />
+</Layout>
+
+<style>
+  .timeline li { display: flex; gap: 24px; }
+  .timeline__when { flex: 0 0 120px; padding-top: 22px; text-align: right; font-weight: 600; color: var(--text-2); }
+  .timeline__line { flex: 0 0 16px; display: flex; flex-direction: column; align-items: center; }
+  .timeline__line::before, .timeline__line::after { content: ''; width: 2px; background: var(--hairline); }
+  .timeline__line::before { height: 24px; }
+  .timeline__line::after { flex-grow: 1; }
+  .timeline .first .timeline__line::before, .timeline .last .timeline__line::after { background: transparent; }
+  .timeline__line span { width: 12px; height: 12px; border-radius: 9999px; border: 2px solid var(--gold); background: #fff; }
+  .timeline .current .timeline__line span { background: var(--gold); box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.2); }
+  .timeline__card { flex: 1 1 auto; min-width: 0; margin: 8px 0 16px; padding: 20px 24px; }
+  @media (max-width: 600px) {
+    .timeline li { gap: 12px; }
+    .timeline__when { flex-basis: 64px; font-size: 12px; }
+  }
+</style>

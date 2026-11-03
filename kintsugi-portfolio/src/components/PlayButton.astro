@@ -1,0 +1,16 @@
+---
+interface Props { size?: number }
+const { size = 76 } = Astro.props;
+---
+
+<span class="play" style={`--s: ${size}px`} aria-hidden="true">
+  <svg width={size / 3} height={size / 2.8} viewBox="0 0 26 28"><path d="M4 2 L24 14 L4 26 Z" fill="#1d1d1f"></path></svg>
+</span>
+
+<style>
+  .play {
+    width: var(--s); height: var(--s); border-radius: 9999px; background: var(--gold);
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 6px rgba(217, 164, 65, 0.18);
+  }
+</style>

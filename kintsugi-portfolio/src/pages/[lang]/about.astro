@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Seam from '../../components/Seam.astro';
+import Media from '../../components/Media.astro';
+import { useTexts, pick, url, langPaths, otherLang, type Lang } from '../../lib/i18n';
+import { site, about } from '../../lib/data';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const t = useTexts(lang);
+const facts = [
+  { label: t.about.based_in, value: pick(site.location, lang) },
+  ...about.facts.map((f) => ({ label: pick(f.label, lang), value: pick(f.value, lang) })),
+];
+---
+
+<Layout lang={lang} title={t.about.title} active="about" alternate={url(otherLang(lang), 'about/')}>
+  <section class="section">
+    <div class="container split" style="gap: 56px">
+      <div class="stack" style="flex: 1 1 400px">
+        <p class="eyebrow">{t.about.eyebrow}</p>
+        <h1 class="h1">{t.about.heading}<br />{t.about.heading_2}</h1>
+        <p class="lead">{t.about.intro}</p>
+      </div>
+      <div style="flex: 0 1 360px">
+        <Media src={site.portrait} alt={t.about.portrait} ratio="4 / 5" large shadow />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--parchment">
+    <div class="container split split--top">
+      <div class="split__side"><h2 class="h2">{t.about.story_title}</h2></div>
+      <div class="split__main prose">
+        {t.about.story.map((p: string) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-block: 64px">
+    <dl class="container grid" style="--min: 170px">
+      {facts.map((f) => (
+        <div class="card" style="padding: 20px">
+          <dt class="xs muted">{f.label}</dt>
+          <dd style="margin: 4px 0 0; font-weight: 600">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <Seam variant={2} />
+
+  <section class="section section--dark-2">
+    <div class="container stack" style="--gap: 40px">
+      <div class="stack center" style="--gap: 8px">
+        <p class="eyebrow">{t.about.principles_eyebrow}</p>
+        <h2 class="h2">{t.about.principles_title}</h2>
+      </div>
+      <div class="grid" style="--min: 260px">
+        {t.about.principles.map((p: { title: string; text: string }) => (
+          <div class="card card--flat stack" style="--gap: 10px">
+            <h3 class="h3">{p.title}</h3>
+            <p class="small muted">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Seam variant={0} />
+
+  <section class="section">
+    <div class="container stack" style="--gap: 32px">
+      <h2 class="h2">{t.about.games_title}</h2>
+      <div class="grid" style="--min: 210px">
+        {about.games.map((g) => (
+          <div class="stack" style="--gap: 12px">
+            <Media src={g.cover} alt={g.title} ratio="3 / 4" />
+            <h3 class="h4">{g.title}</h3>
+            <p class="small muted">{pick(g.why, lang)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--parchment">
+    <div class="container stack" style="--gap: 32px">
+      <div class="stack" style="--gap: 8px">
+        <p class="eyebrow">{t.about.offscreen_eyebrow}</p>
+        <h2 class="h2">{t.about.offscreen_title}</h2>
+      </div>
+      <div class="grid" style="--min: 260px">
+        {about.hobbies.map((h) => (
+          <div class="card stack" style="--gap: 12px">
+            <Media src={h.image} alt={pick(h.title, lang)} />
+            <h3 class="h4" style="font-size: 19px">{pick(h.title, lang)}</h3>
+            <p class="small muted">{pick(h.text, lang)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Seam variant={1} />
+
+  <section class="section section--dark-3" style="padding-block: 96px">
+    <div class="container--narrow stack center" style="--gap: 20px">
+      <h2 class="h2 h2--lg"><span class="gold-text">{t.about.cta_title}</span></h2>
+      <p class="muted">{t.about.cta_text}</p>
+      <div class="row center" style="--gap: 12px">
+        <a class="btn btn--gold" href={url(lang, 'contact/')}>{t.about.cta_contact}</a>
+        <a class="btn btn--ghost" href={url(lang, 'career/')}>{t.about.cta_career}</a>
+      </div>
+    </div>
+  </section>
+  <Seam variant={2} />
+</Layout>

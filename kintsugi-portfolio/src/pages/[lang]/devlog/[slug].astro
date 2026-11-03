@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Media from '../../../components/Media.astro';
+import { useTexts, url, otherLang, formatDate, type Lang } from '../../../lib/i18n';
+import { hasTranslation, postSlug, type Post } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('devlog', (p) => !p.data.draft);
+  return posts.map((post) => {
+    const [slug, lang] = post.id.split('/');
+    return { params: { lang, slug }, props: { post } };
+  });
+}
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const other = otherLang(lang);
+const t = useTexts(lang);
+const slug = postSlug(post);
+const { Content } = await render(post);
+const alternate = (await hasTranslation(slug, other)) ? url(other, `devlog/${slug}/`) : url(other, 'devlog/');
+---
+
+<Layout lang={lang} title={post.data.title} description={post.data.excerpt} active="devlog" alternate={alternate}>
+  <article>
+    <header class="section" style="padding-bottom: 32px">
+      <div class="container--narrow stack">
+        <a class="small" href={url(lang, 'devlog/')}>‹ {t.devlog.back}</a>
+        <p class="eyebrow">
+          {t.devlog.categories[post.data.category]} · {formatDate(post.data.date, lang)} · {post.data.readingTime} {t.common.min_read}
+        </p>
+        <h1 class="h1">{post.data.title}</h1>
+        <p class="lead">{post.data.excerpt}</p>
+      </div>
+    </header>
+    {post.data.cover && (
+      <div class="container--narrow" style="padding: 0 24px">
+        <Media src={post.data.cover} alt={post.data.title} ratio="16 / 9" large />
+      </div>
+    )}
+    <div class="section section--tight" style="padding-top: 32px">
+      <div class="container--narrow prose post-body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .container--narrow { max-width: 680px; }
+  .post-body :global(p + p) { color: var(--ink); }
+  .post-body :global(img) { border-radius: var(--radius-sm); }
+  .post-body :global(code) { font-size: 0.9em; background: var(--parchment); padding: 2px 6px; border-radius: 6px; }
+</style>

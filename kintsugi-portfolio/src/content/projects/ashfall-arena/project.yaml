@@ -1,0 +1,22 @@
+title: Ashfall Arena
+order: 3
+featured: true
+year: 2025
+status: prototype
+engine: Unreal Engine 5
+filters: [unreal]
+tags: [Unreal Engine, Multiplayer]
+
+type:
+  de: Prototyp
+  en: Prototype
+role:
+  de: Gameplay und Netzwerk
+  en: Gameplay and networking
+summary:
+  de: Arena-Brawler für vier Spieler, gebaut zum Testen von Trefferfeedback, Knockback und replizierten Fähigkeiten.
+  en: Four-player arena brawler built to test hit feel, knockback and replicated abilities.
+
+links:
+  - label: { de: Auf itch.io spielen, en: Play on itch.io }
+    url: https://itch.io/

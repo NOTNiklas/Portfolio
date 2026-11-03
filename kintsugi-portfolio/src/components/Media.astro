@@ -1,0 +1,24 @@
+---
+// Bild oder Video. Ohne Datei erscheint eine neutrale Fläche im richtigen Format.
+interface Props {
+  src?: string;
+  alt?: string;
+  ratio?: string;
+  tone?: 'light' | 'dark' | 'white';
+  large?: boolean;
+  shadow?: boolean;
+  poster?: string;
+}
+const { src = '', alt = '', ratio = '16 / 10', tone = 'light', large = false, shadow = false, poster } = Astro.props;
+const isVideo = /\.(mp4|webm)$/i.test(src);
+---
+
+<div
+  class:list={['media', { 'media--dark': tone === 'dark', 'media--white': tone === 'white', 'media--lg': large, shadow }]}
+  style={`--ratio: ${ratio}`}
+  aria-hidden={src ? undefined : 'true'}
+>
+  {src && isVideo && <video src={src} poster={poster || undefined} controls preload="metadata"></video>}
+  {src && !isVideo && <img src={src} alt={alt} loading="lazy" />}
+  <slot />
+</div>

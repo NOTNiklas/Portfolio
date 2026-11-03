@@ -1,0 +1,107 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Seam from '../../../components/Seam.astro';
+import Media from '../../../components/Media.astro';
+import { useTexts, url, langPaths, otherLang, formatDate, type Lang } from '../../../lib/i18n';
+import { site } from '../../../lib/data';
+import { getPosts, postSlug } from '../../../lib/content';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const t = useTexts(lang);
+const d = t.devlog;
+const [latest, ...rest] = await getPosts(lang);
+const categories = ['kintsugi', 'tools', 'tutorial', 'postmortem'] as const;
+const meta = (date: Date, cat: string, min: number) => `${formatDate(date, lang)} · ${d.categories[cat]} · ${min} ${t.common.min_read}`;
+---
+
+<Layout lang={lang} title={d.title} active="devlog" alternate={url(otherLang(lang), 'devlog/')}>
+  <section class="section" style="padding-bottom: 40px">
+    <div class="container stack">
+      <p class="eyebrow">{d.eyebrow}</p>
+      <h1 class="h1">{d.heading}</h1>
+      <p class="lead">{d.intro}</p>
+    </div>
+  </section>
+
+  {latest && (
+    <section class="section section--tight" style="padding-bottom: 48px">
+      <a class="container latest" href={url(lang, `devlog/${postSlug(latest)}/`)}>
+        <div class="latest__media"><Media src={latest.data.cover} alt={latest.data.title} ratio="16 / 10" tone="dark" /></div>
+        <div class="latest__text stack" style="--gap: 12px">
+          <span class="eyebrow">{d.latest} · {meta(latest.data.date, latest.data.category, latest.data.readingTime)}</span>
+          <h2 class="h2 h2--sm">{latest.data.title}</h2>
+          <p class="muted">{latest.data.excerpt}</p>
+          <span class="latest__more">{d.read_post} ›</span>
+        </div>
+      </a>
+    </section>
+  )}
+
+  <section class="section section--tight">
+    <div class="container stack" style="--gap: 24px">
+      <div class="row" style="--gap: 8px" role="group" aria-label={d.filter_label}>
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">{d.all}</button>
+        {categories.map((c) => <button class="filter" type="button" data-filter={c} aria-pressed="false">{d.categories[c]}</button>)}
+      </div>
+      <div class="grid grid--fill" data-list>
+        {rest.map((post) => (
+          <a class="card stack post" style="--gap: 14px" href={url(lang, `devlog/${postSlug(post)}/`)} data-filters={post.data.category}>
+            <Media src={post.data.cover} alt={post.data.title} ratio="16 / 9" />
+            <span class="xs muted">{meta(post.data.date, post.data.category, post.data.readingTime)}</span>
+            <h3 class="h4" style="font-size: 19px; line-height: 1.26">{post.data.title}</h3>
+            <p class="small text-2" style="flex-grow: 1">{post.data.excerpt}</p>
+            <span class="small" style="color: var(--gold-deep)">{t.common.read} ›</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {site.newsletterAction ? (
+    <>
+      <div style="height: 80px"></div>
+      <Seam variant={2} />
+      <section class="section section--dark-3">
+        <div class="container--narrow stack center">
+          <h2 class="h2">{d.newsletter_title}</h2>
+          <p class="muted">{d.newsletter_text}</p>
+          <form class="row center" style="--gap: 10px; width: 100%; padding-top: 8px" method="post" action={site.newsletterAction}>
+            <label class="sr-only" for="nl-email">{d.newsletter_label}</label>
+            <input class="input nl" id="nl-email" name="email" type="email" required autocomplete="email" placeholder={d.newsletter_placeholder} />
+            <button class="btn btn--gold" type="submit">{d.newsletter_button}</button>
+          </form>
+        </div>
+      </section>
+      <Seam variant={0} />
+    </>
+  ) : (
+    <div style="height: 80px"></div>
+  )}
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const posts = document.querySelectorAll<HTMLElement>('[data-list] > [data-filters]');
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+      const f = button.dataset.filter;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      posts.forEach((p) => (p.hidden = !(f === 'all' || p.dataset.filters === f)));
+    }),
+  );
+</script>
+
+<style>
+  .latest { display: flex; flex-wrap: wrap; background: var(--tile-1); color: #fff; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gold-line); }
+  .latest:hover { text-decoration: none; border-color: var(--gold); }
+  .latest__media { flex: 1 1 420px; min-width: 0; }
+  .latest__media :global(.media) { height: 100%; border-radius: 0; }
+  .latest__text { flex: 1 1 380px; padding: 40px; justify-content: center; }
+  .latest__text .eyebrow { color: var(--gold-light); }
+  .latest__text .muted { color: var(--on-dark-muted); }
+  .latest__more { color: var(--gold-light); }
+  .post[hidden] { display: none; }
+  .nl { flex: 1 1 260px; border-radius: var(--pill); background: var(--ink); color: #fff; border-color: rgba(255, 255, 255, 0.24); padding: 0 18px; }
+</style>

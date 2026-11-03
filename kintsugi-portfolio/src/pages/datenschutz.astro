@@ -1,0 +1,28 @@
+---
+import { getEntry, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { legal } from '../lib/data';
+
+const entry = await getEntry('legal', 'datenschutz');
+const { Content } = await render(entry!);
+---
+
+<Layout lang="de" title="Datenschutz" alternate="/datenschutz/">
+  <section class="section section--parchment" style="padding-block: 64px 48px">
+    <div class="container stack" style="--gap: 12px">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="h1">Datenschutzerklärung</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container--narrow prose legal">
+      <Content />
+      <p class="small muted">Stand: {legal.updated}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal :global(p) { color: var(--ink); }
+  .legal :global(h2) { font-size: 21px; }
+</style>

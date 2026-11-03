@@ -1,0 +1,21 @@
+title: Tiny Forge
+order: 6
+year: 2024
+status: prototype
+engine: Godot 4
+filters: [godot]
+tags: [Godot, Mobile, Pixel Art]
+
+type:
+  de: Prototyp
+  en: Prototype
+role:
+  de: Solo
+  en: Solo
+summary:
+  de: "Ein Pixel-Art-Crafting-Spiel fürs Handy. Mein erster fertiger Loop: sammeln, schmieden, verkaufen, wiederholen."
+  en: "A pixel-art crafting game for phones. My first finished loop: gather, forge, sell, repeat."
+
+links:
+  - label: { de: Auf itch.io spielen, en: Play on itch.io }
+    url: https://itch.io/

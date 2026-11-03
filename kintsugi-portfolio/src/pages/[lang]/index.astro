@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Seam from '../../components/Seam.astro';
+import HeroCrack from '../../components/HeroCrack.astro';
+import InkArt from '../../components/InkArt.astro';
+import Media from '../../components/Media.astro';
+import PlayButton from '../../components/PlayButton.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { useTexts, pick, url, langPaths, otherLang, formatDate, type Lang } from '../../lib/i18n';
+import { site } from '../../lib/data';
+import { getProjects, getSpotlight, getPosts, postSlug } from '../../lib/content';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const t = useTexts(lang);
+const projects = await getProjects();
+const spotlight = await getSpotlight();
+const featured = projects.filter((p) => p.data.featured && p.id !== spotlight.id).slice(0, 3);
+const posts = (await getPosts(lang)).slice(0, 3);
+
+const stats = [
+  { label: t.home.stat_projects, value: projects.length },
+  { label: t.home.stat_jams, value: projects.filter((p) => p.data.filters.includes('jam')).length },
+  { label: t.home.stat_years, value: new Date().getFullYear() - site.startedYear },
+];
+---
+
+<Layout lang={lang} title={t.home.title} active="home" alternate={url(otherLang(lang))}>
+  <!-- Hero -->
+  <section class="section section--dark has-crack hero">
+    <HeroCrack />
+    <div class="container stack center" style="--gap: 24px">
+      <p class="eyebrow">{t.home.hero_eyebrow} · {pick(site.location, lang)}</p>
+      <h1 class="h-hero">{t.home.hero_title}<br /><span class="gold-text">{t.home.hero_title_gold}</span></h1>
+      <p class="lead" style="max-width: 620px">{t.home.hero_text}</p>
+      <div class="row center" style="--gap: 12px">
+        <a class="btn btn--gold" href={url(lang, 'projects/')}>{t.home.cta_projects} ›</a>
+        <a class="btn btn--ghost" href={url(lang, 'contact/')}>{t.home.cta_contact}</a>
+      </div>
+      <figure class="showreel">
+        {site.showreel.video ? (
+          <Media src={site.showreel.video} poster={site.showreel.poster} ratio="16 / 9" tone="dark" large shadow />
+        ) : (
+          <div class="media media--dark media--lg shadow showreel__empty" style="--ratio: 16 / 9" role="img" aria-label={t.home.showreel}>
+            <PlayButton />
+          </div>
+        )}
+        <figcaption class="small muted">{t.home.showreel_caption}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <Seam variant={0} />
+
+  <!-- Aktuelles Hauptprojekt -->
+  <section class="section section--parchment">
+    <div class="container split">
+      <div class="stack">
+        <p class="eyebrow">{t.home.spotlight_eyebrow}</p>
+        <h2 class="h2 h2--lg"><span class="gold-text gold-text--light">{spotlight.data.title}.</span></h2>
+        {spotlight.data.tagline && <p class="h3" style="font-weight: 400">{pick(spotlight.data.tagline, lang)}</p>}
+        <p class="text-2">{pick(spotlight.data.summary, lang)}</p>
+        <ul class="chips" style="gap: 8px">
+          <li class="chip chip--outline">{spotlight.data.engine}</li>
+          <li class="chip chip--outline">{pick(spotlight.data.type, lang)}</li>
+          <li class="chip chip--outline">{t.status[spotlight.data.status]}</li>
+        </ul>
+        <div class="row">
+          <a href={url(lang, `projects/${spotlight.id}/`)}>{t.home.spotlight_explore} ›</a>
+          <a href={url(lang, 'devlog/')}>{t.home.spotlight_devlog} ›</a>
+        </div>
+      </div>
+      <InkArt src={spotlight.data.keyArt} alt={spotlight.data.title} />
+    </div>
+  </section>
+
+  <!-- Ausgewählte Arbeiten -->
+  <section class="section">
+    <div class="container stack" style="--gap: 32px">
+      <div class="row row--between">
+        <div class="stack" style="--gap: 8px">
+          <p class="eyebrow">{t.home.work_eyebrow}</p>
+          <h2 class="h2">{t.home.work_title}</h2>
+        </div>
+        <a href={url(lang, 'projects/')}>{t.common.all_projects} ›</a>
+      </div>
+      <div class="grid">
+        {featured.map((p) => <ProjectCard project={p} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <Seam variant={1} />
+
+  <!-- Was ich mache -->
+  <section class="section section--dark-2">
+    <div class="container stack" style="--gap: 40px">
+      <div class="stack center" style="--gap: 8px">
+        <p class="eyebrow">{t.home.do_eyebrow}</p>
+        <h2 class="h2">{t.home.do_title}</h2>
+      </div>
+      <div class="grid" style="--min: 260px">
+        {t.home.do_items.map((item: { title: string; text: string }) => (
+          <div class="card card--flat stack" style="--gap: 10px">
+            <h3 class="h3">{item.title}</h3>
+            <p class="small muted">{item.text}</p>
+          </div>
+        ))}
+      </div>
+      <dl class="grid stats" style="--min: 180px">
+        {stats.map((s) => (
+          <div>
+            <dt class="small muted">{s.label}</dt>
+            <dd class="gold-text">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <Seam variant={2} />
+
+  <!-- Über mich (kurz) -->
+  <section class="section">
+    <div class="container split">
+      <div class="portrait" style="flex: 0 1 320px">
+        <Media src={site.portrait} alt={site.name} ratio="4 / 5" large />
+      </div>
+      <div class="stack">
+        <p class="eyebrow">{t.home.about_eyebrow}</p>
+        <h2 class="h2">{t.home.about_title}</h2>
+        <p>{t.home.about_text}</p>
+        <div class="row">
+          <a href={url(lang, 'about/')}>{t.home.about_more} ›</a>
+          <a href={url(lang, 'career/')}>{t.home.about_career} ›</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devlog -->
+  {posts.length > 0 && (
+    <section class="section section--parchment">
+      <div class="container stack" style="--gap: 24px">
+        <div class="row row--between">
+          <h2 class="h2 h2--sm">{t.home.devlog_title}</h2>
+          <a href={url(lang, 'devlog/')}>{t.home.devlog_all} ›</a>
+        </div>
+        <ul class="posts card" style="padding: 0">
+          {posts.map((post) => (
+            <li>
+              <a href={url(lang, `devlog/${postSlug(post)}/`)}>
+                <span class="small muted posts__date">{formatDate(post.data.date, lang)}</span>
+                <span class="posts__title">{post.data.title}</span>
+                <span class="small posts__more">{t.common.read} ›</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <Seam variant={0} />
+
+  <!-- Abschluss -->
+  <section class="section section--dark-3" style="padding-block: 96px">
+    <div class="container--narrow stack center" style="--gap: 20px">
+      <h2 class="h2 h2--lg">{t.home.cta_title} <span class="gold-text">{t.home.cta_title_gold}</span></h2>
+      <p class="muted">{t.home.cta_text}</p>
+      <div class="row center" style="--gap: 12px">
+        <a class="btn btn--gold" href={url(lang, 'contact/')}>{t.home.cta_contact}</a>
+        <a class="btn btn--ghost" href={site.cv[lang]}>{t.home.cta_cv}</a>
+      </div>
+    </div>
+  </section>
+  <Seam variant={1} />
+</Layout>
+
+<style>
+  .hero { padding: 96px 24px 80px; }
+  .showreel { width: 100%; margin-top: 40px; display: flex; flex-direction: column; gap: 12px; }
+  .showreel__empty { display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold-line); }
+  .stats { text-align: center; }
+  .stats dd { margin: 4px 0 0; font-size: 48px; font-weight: 600; letter-spacing: -0.4px; }
+  .posts li + li { border-top: 1px solid var(--divider); }
+  .posts a {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px;
+    padding: 20px 24px; color: var(--ink);
+  }
+  .posts a:hover { text-decoration: none; background: var(--pearl); }
+  .posts__date { flex: 0 0 110px; }
+  .posts__title { flex: 1 1 360px; font-weight: 600; }
+  .posts__more { color: var(--gold-deep); }
+  .posts li:first-child a { border-radius: 18px 18px 0 0; }
+  .posts li:last-child a { border-radius: 0 0 18px 18px; }
+</style>

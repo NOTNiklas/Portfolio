@@ -1,0 +1,18 @@
+---
+// Feine Goldnaht hinter einem dunklen Hero. Der Abschnitt braucht die Klasse "has-crack".
+const d = 'M-20 210 L 210 250 L 300 190 L 470 300 L 540 270 L 700 380 L 860 350 L 980 470 L 1160 430 L 1460 560';
+---
+
+<svg class="crack" aria-hidden="true" viewBox="0 0 1440 900" preserveAspectRatio="none">
+  <path d={d} stroke="var(--gold)" stroke-width="1.5" opacity="0.4" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+  <path d="M300 190 L 330 110 M 700 380 L 760 330 M 1160 430 L 1200 500" stroke="var(--gold)" stroke-width="1" opacity="0.35" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+  <path class="seam-glint" d={d} pathLength="100" stroke="var(--gold-shine)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+</svg>
+
+<style>
+  .crack { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; fill: none; }
+  :global(.has-crack) { position: relative; overflow: hidden; isolation: isolate; }
+  @media (max-width: 700px) {
+    .crack { opacity: 0.45; height: 55%; top: auto; bottom: 0; }
+  }
+</style>

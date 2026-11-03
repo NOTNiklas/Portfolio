@@ -1,0 +1,37 @@
+---
+import Media from './Media.astro';
+import { useTexts, pick, url, type Lang } from '../lib/i18n';
+import type { Project } from '../lib/content';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+  /** Ausführliche Karte mit Rolle und Tags (Projektseite) */
+  detailed?: boolean;
+}
+const { project, lang, detailed = false } = Astro.props;
+const t = useTexts(lang);
+const p = project.data;
+const meta = `${pick(p.type, lang)} · ${p.engine} · ${p.year}`;
+---
+
+<a class="card project" href={url(lang, `projects/${project.id}/`)} data-filters={p.filters.join(' ')}>
+  <Media src={p.cover} alt={p.title} />
+  <div class="stack project__body" style="--gap: 6px">
+    <span class="xs muted">{meta}</span>
+    <h3 class="h3">{p.title}</h3>
+    <p class="small text-2">{pick(p.summary, lang)}</p>
+    {detailed && <p class="xs muted">{t.common.role}: {pick(p.role, lang)}</p>}
+  </div>
+  {detailed && (
+    <ul class="chips">{p.tags.map((tag) => <li class="chip chip--sm">{tag}</li>)}</ul>
+  )}
+  <span class="small project__more">{t.common.view_project} ›</span>
+</a>
+
+<style>
+  .project { gap: 16px; }
+  .project__body { flex-grow: 1; }
+  .project__more { color: var(--gold-deep); }
+  .project[hidden] { display: none; }
+</style>

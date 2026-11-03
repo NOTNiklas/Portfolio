@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────────
+# Skills und Tools auf der Werdegang-Seite
+# ─────────────────────────────────────────────────────────────
+
+groups:
+  - title: { de: Engines, en: Engines }
+    items: [Unreal Engine 5, Godot 4]
+  - title: { de: Programmierung, en: Programming }
+    items: [C++, Blueprints, GDScript, Python]
+  - title: { de: Art und 3D, en: Art and 3D }
+    items:
+      - Blender
+      - Niagara
+      - Materials
+      - { de: KI-zu-3D-Pipelines, en: AI-to-3D pipelines }
+  - title: { de: Arbeitsweise, en: Workflow }
+    items:
+      - Git
+      - Perforce
+      - { de: Ticketsysteme, en: Ticket systems }
+      - Hardware-Debugging
+
+# Ein Eintrag ist entweder ein Wort für beide Sprachen ("Git")
+# oder zweisprachig: { de: ..., en: ... }
+
+languages:
+  de: Deutsch (Muttersprache) · Englisch (fließend)
+  en: German (native) · English (fluent)
+
+courses:
+  de: Unreal Engine 5 C++ Kurs (online, 2025) · Blender-Grundlagen (online, 2024)
+  en: Unreal Engine 5 C++ course (online, 2025) · Blender fundamentals (online, 2024)

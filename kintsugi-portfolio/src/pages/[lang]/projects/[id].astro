@@ -1,0 +1,295 @@
+---
+import { render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Seam from '../../../components/Seam.astro';
+import InkArt from '../../../components/InkArt.astro';
+import Media from '../../../components/Media.astro';
+import PlayButton from '../../../components/PlayButton.astro';
+import { useTexts, pick, url, languages, otherLang, type Lang } from '../../../lib/i18n';
+import { getProjects, getProjectText, type Project } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return languages.flatMap((lang) =>
+    projects.map((project, i) => ({
+      params: { lang, id: project.id },
+      props: { project, next: projects[(i + 1) % projects.length] },
+    })),
+  );
+}
+
+interface Props { project: Project; next: Project }
+const { project, next } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const t = useTexts(lang);
+const p = project.data;
+const text = await getProjectText(project.id, lang);
+const body = text ? await render(text) : null;
+
+const facts = [
+  { label: t.project.fact_role, value: pick(p.role, lang) },
+  { label: t.project.fact_engine, value: p.engine },
+  ...p.extraFacts.map((f) => ({ label: pick(f.label, lang), value: pick(f.value, lang) })),
+  { label: t.project.fact_year, value: String(p.year) },
+  { label: t.project.fact_status, value: t.status[p.status], gold: true },
+];
+
+const sections = [
+  body && { id: 'overview', label: t.project.overview },
+  (p.loop || p.features.length) && { id: 'gameplay', label: t.project.features },
+  p.art && { id: 'art', label: t.project.art },
+  p.gallery.length && { id: 'gallery', label: t.project.gallery },
+  p.learnings && { id: 'learnings', label: t.project.learnings },
+].filter(Boolean) as { id: string; label: string }[];
+---
+
+<Layout lang={lang} title={p.title} description={pick(p.summary, lang)} active="projects"
+  alternate={url(otherLang(lang), `projects/${project.id}/`)}>
+
+  {sections.length > 1 && (
+    <div class="subnav">
+      <nav class="container subnav__inner" aria-label={t.project.sections_label}>
+        <span class="subnav__title">{p.title}</span>
+        {sections.map((s) => <a href={`#${s.id}`}>{s.label}</a>)}
+        {p.links[0] && <a class="btn btn--gold btn--sm" href={p.links[0].url}>{pick(p.links[0].label, lang)}</a>}
+      </nav>
+    </div>
+  )}
+
+  <!-- Hero -->
+  <section class="section section--dark-3 phero">
+    <div class="container stack center" style="--gap: 16px">
+      <a class="small" href={url(lang, 'projects/')}>‹ {t.project.back}</a>
+      <h1 class="h-project"><span class="gold-text">{p.title}</span></h1>
+      {p.tagline && <p class="tagline">{pick(p.tagline, lang)}</p>}
+      <p class="muted" style="max-width: 620px">{pick(p.intro ?? p.summary, lang)}</p>
+      <div class="row center" style="--gap: 12px; padding-top: 8px">
+        {p.trailer && <a class="btn btn--gold" href="#gallery">{t.project.trailer}</a>}
+        {!p.trailer && p.links[0] && <a class="btn btn--gold" href={p.links[0].url}>{pick(p.links[0].label, lang)}</a>}
+        <a class="btn btn--ghost" href={url(lang, 'devlog/')}>{t.project.devlog}</a>
+      </div>
+      <figure class="phero__art">
+        {p.keyArt || p.spotlight ? (
+          <InkArt src={p.keyArt} alt={p.title} ratio="21 / 9" rounded="top" shadow={false} />
+        ) : (
+          <Media src={p.cover} alt={p.title} ratio="21 / 9" tone="dark" />
+        )}
+      </figure>
+    </div>
+  </section>
+
+  <Seam variant={0} />
+
+  <!-- Steckbrief -->
+  <section class="section facts-wrap">
+    <dl class="container grid facts" style="--min: 140px">
+      {facts.map((f) => (
+        <div>
+          <dt class="xs muted">{f.label}</dt>
+          <dd class:list={{ gold: f.gold }}>{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Überblick -->
+  {body && text && (
+    <section class="section" id="overview">
+      <div class="container split split--top">
+        <div class="split__side stack" style="--gap: 8px">
+          <p class="eyebrow">{t.project.overview_eyebrow}</p>
+          <h2 class="h2">{text.data.heading}</h2>
+        </div>
+        <div class="split__main prose">
+          <body.Content />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Gameplay -->
+  {(p.loop || p.features.length > 0) && (
+    <>
+      <Seam variant={1} />
+      <section class="section section--dark-2" id="gameplay">
+        <div class="container stack" style="--gap: 40px">
+          {p.loop && (
+            <>
+              <div class="stack center" style="--gap: 8px">
+                <p class="eyebrow">{t.project.features}</p>
+                <h2 class="h2">{pick(p.loop.heading, lang)}</h2>
+                <p class="muted" style="max-width: 560px">{pick(p.loop.text, lang)}</p>
+              </div>
+              <ol class="loop" aria-label={t.project.loop_label}>
+                {p.loop.steps.map((step, i) => (
+                  <li>
+                    <span class="loop__step"><span class="loop__n">0{i + 1}</span>{pick(step, lang)}</span>
+                    {i < p.loop!.steps.length - 1 && <span class="loop__arrow" aria-hidden="true">›</span>}
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
+          <div class="grid">
+            {p.features.map((f) => (
+              <article class="card card--flat stack" style="--gap: 12px">
+                <Media src={f.media} alt={pick(f.title, lang)} ratio="16 / 9" tone="dark" />
+                <h3 class="h3">{pick(f.title, lang)}</h3>
+                <p class="small muted">{pick(f.text, lang)}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Seam variant={2} />
+    </>
+  )}
+
+  <!-- Art Style -->
+  {p.art && (
+    <section class="section section--parchment" id="art">
+      <div class="container stack" style="--gap: 40px">
+        <div class="split split--top">
+          <div class="stack">
+            <p class="eyebrow">{t.project.art}</p>
+            <h2 class="h2">{pick(p.art.heading, lang)}</h2>
+            <p class="text-2">{pick(p.art.text, lang)}</p>
+          </div>
+          {p.art.palette.length > 0 && (
+            <ul class="palette" aria-label={t.project.palette}>
+              {p.art.palette.map((c) => (
+                <li>
+                  <span class="palette__swatch" style={`background: ${c.hex}`}></span>
+                  <span class="small"><strong>{pick(c.name, lang)}</strong> · {c.hex.toUpperCase()}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        {p.art.concepts.length > 0 && (
+          <div class="grid">
+            {p.art.concepts.map((c) => (
+              <figure class="stack" style="--gap: 8px">
+                <Media src={c.src} alt={pick(c.caption, lang)} ratio="3 / 4" tone="white" large />
+                <figcaption class="small muted">{pick(c.caption, lang)}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Galerie -->
+  {(p.gallery.length > 0 || p.trailer) && (
+    <section class="section" id="gallery">
+      <div class="container stack" style="--gap: 32px">
+        <div class="stack" style="--gap: 8px">
+          <p class="eyebrow">{t.project.gallery}</p>
+          <h2 class="h2">{t.project.gallery_title}</h2>
+        </div>
+        {p.trailer ? (
+          <Media src={p.trailer} ratio="16 / 9" tone="dark" large shadow />
+        ) : p.spotlight && (
+          <div class="media media--dark media--lg shadow trailer-empty" style="--ratio: 16 / 9" aria-hidden="true">
+            <PlayButton size={68} />
+          </div>
+        )}
+        <div class="grid gallery" style="--min: 260px; --gap: 16px">
+          {p.gallery.map((g) => (
+            <figure class="stack" style="--gap: 8px">
+              <Media src={g.src} alt={pick(g.caption, lang)} />
+              <figcaption class="xs muted">{pick(g.caption, lang)}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Technik -->
+  {p.tech.length > 0 && (
+    <section class="section section--parchment">
+      <div class="container split split--top">
+        <div class="split__side stack" style="--gap: 8px">
+          <p class="eyebrow">{t.project.tech_eyebrow}</p>
+          <h2 class="h2">{t.project.tech_title}</h2>
+        </div>
+        <ul class="split__main card tech" style="padding: 0">
+          {p.tech.map((item) => (
+            <li class="stack" style="--gap: 2px">
+              <span class="h4">{pick(item.title, lang)}</span>
+              <span class="small muted">{pick(item.text, lang)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Learnings -->
+  {p.learnings && (
+    <>
+      <Seam variant={0} />
+      <section class="section section--dark" id="learnings">
+        <div class="container stack" style="--gap: 32px">
+          <div class="stack center" style="--gap: 8px">
+            <p class="eyebrow">{t.project.learnings_eyebrow}</p>
+            <h2 class="h2">{pick(p.learnings.heading, lang)}</h2>
+          </div>
+          <div class="grid" style="--min: 260px">
+            {p.learnings.items.map((item, i) => (
+              <div class="card card--flat stack" style="--gap: 10px">
+                <span class="gold-text learn__n">0{i + 1}</span>
+                <h3 class="h4" style="font-size: 19px">{pick(item.title, lang)}</h3>
+                <p class="small muted">{pick(item.text, lang)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Seam variant={1} />
+    </>
+  )}
+
+  <!-- Weiter -->
+  <nav class="section section--parchment" style="padding-block: 48px" aria-label={t.project.more}>
+    <div class="container row row--between" style="align-items: center">
+      <a href={url(lang, 'projects/')}>‹ {t.project.back}</a>
+      <a href={url(lang, `projects/${next.id}/`)}>{t.common.next}: {next.data.title} ›</a>
+    </div>
+  </nav>
+</Layout>
+
+<style>
+  .subnav {
+    position: sticky; top: 52px; z-index: 40;
+    background: rgba(245, 245, 247, 0.8);
+    backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .subnav__inner { display: flex; align-items: center; gap: 0 24px; min-height: 52px; padding: 4px 24px; overflow-x: auto; white-space: nowrap; }
+  .subnav__title { margin-right: auto; font-size: 21px; font-weight: 600; letter-spacing: -0.231px; }
+  .subnav a:not(.btn) { display: flex; align-items: center; min-height: 44px; font-size: 12px; color: var(--ink); }
+  .phero { padding: 88px 24px 0; }
+  .phero__art { width: 100%; margin-top: 48px; }
+  .facts-wrap { padding-block: 56px; border-bottom: 1px solid var(--divider); }
+  .facts dd { margin: 4px 0 0; font-size: 17px; font-weight: 600; }
+  .facts dd.gold { color: var(--gold-deep); }
+  .loop { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+  .loop li { display: flex; align-items: center; gap: 10px; }
+  .loop__step {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: var(--pill);
+    border: 1px solid var(--gold-line); background: var(--ink); font-size: 15px;
+  }
+  .loop__n { font-size: 12px; font-weight: 600; color: var(--gold-light); }
+  .loop__arrow { color: var(--muted); }
+  .palette { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .palette li { display: flex; flex-direction: column; gap: 8px; }
+  .palette__swatch { height: 88px; border-radius: var(--radius-md); border: 1px solid var(--hairline); }
+  .palette strong { font-weight: 600; }
+  .trailer-empty { display: flex; align-items: center; justify-content: center; }
+  .tech li { padding: 18px 24px; }
+  .tech li + li { border-top: 1px solid var(--divider); }
+  .learn__n { font-size: 32px; font-weight: 600; letter-spacing: -0.3px; }
+</style>

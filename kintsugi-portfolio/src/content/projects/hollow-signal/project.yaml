@@ -1,0 +1,21 @@
+title: Hollow Signal
+order: 5
+year: 2024
+status: jam
+engine: Unreal Engine 5
+filters: [unreal, jam]
+tags: [Unreal Engine, Audio, 72 h]
+
+type:
+  de: Game Jam
+  en: Game jam
+role:
+  de: Solo
+  en: Solo
+summary:
+  de: Ein zehnminütiges Radio-Horror-Spiel. Jedes Geräusch ist ein Hinweis.
+  en: A ten-minute radio horror short. Every sound you hear is a clue.
+
+links:
+  - label: { de: Auf itch.io spielen, en: Play on itch.io }
+    url: https://itch.io/

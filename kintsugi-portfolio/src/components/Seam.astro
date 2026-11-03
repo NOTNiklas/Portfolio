@@ -1,0 +1,23 @@
+---
+// Goldene Bruchlinie mit wanderndem Lichtreflex. Zwischen zwei Abschnitte setzen.
+interface Props { variant?: number }
+const shapes = [
+  ['M0 15 L160 12 L250 18 L410 10 L470 16 L650 13 L720 21 L770 8 L940 15 L1090 11 L1160 19 L1310 12 L1440 16', 'M770 8 L788 1 M1160 19 L1178 26'],
+  ['M0 12 L120 17 L300 11 L360 19 L540 14 L610 7 L800 15 L880 20 L1040 12 L1120 17 L1280 9 L1440 13', 'M610 7 L626 0 M880 20 L900 27'],
+  ['M0 18 L200 14 L280 9 L450 16 L590 12 L660 20 L840 11 L900 16 L1060 22 L1130 13 L1350 17 L1440 11', 'M280 9 L296 2 M1060 22 L1082 27'],
+];
+const [d, branches] = shapes[(Astro.props.variant ?? 0) % shapes.length];
+---
+
+<div class="seam" aria-hidden="true">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none">
+    <path d={d} stroke="var(--gold)" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+    <path d={branches} stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+    <path class="seam-glint" d={d} pathLength="100" stroke="var(--gold-shine)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+  </svg>
+</div>
+
+<style>
+  .seam { position: relative; z-index: 3; height: 28px; margin: -14px 0; pointer-events: none; }
+  svg { display: block; width: 100%; height: 28px; overflow: visible; fill: none; }
+</style>
