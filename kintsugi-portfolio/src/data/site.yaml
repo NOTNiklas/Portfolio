@@ -50,22 +50,7 @@ portrait: ""
 
 # Kontaktformular: Adresse eines Formular-Dienstes (z. B. Formspree).
 # Leer = das Formular öffnet stattdessen das E-Mail-Programm.
-contactFormAction: "<!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/maeelrdo"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>"
+contactFormAction: ""
 
 # Newsletter-Anmeldung: Adresse deines Newsletter-Dienstes.
 # Leer = der Newsletter-Bereich im Devlog wird ausgeblendet.
